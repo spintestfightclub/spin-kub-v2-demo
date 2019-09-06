@@ -9,34 +9,38 @@ data:
 ---
 
 apiVersion: apps/v1beta2
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: spinnaker-demo
   namespace: demo
   labels:
-    applicationName: spinnaker-demo
+    source: demo
+    stack: frontend
+    app: spinnaker
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      applicationName: spinnaker-demo
+      source: demo
+      app: spinnaker
   template:
     metadata:
       labels:
-        applicationName: spinnaker-demo
+        source: demo
+        app: spinnaker
     spec:
       containers:
-        - name: primary
-          image: 201599078153.dkr.ecr.us-east-1.amazonaws.com/mason-test-ecr
-          ports:
-            - containerPort: 8000
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 8000
-          envFrom:
-          - configMapRef:
-              name: spinnaker-demo-config
+      - name: primary
+        image: 201599078153.dkr.ecr.us-east-1.amazonaws.com/mason-test-ecr
+        ports:
+        - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8000
+        envFrom:
+        - configMapRef:
+            name: spinnaker-demo-config
 
 ---
 
