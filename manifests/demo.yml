@@ -59,7 +59,3 @@ spec:
     targetPort: 8000
   type: LoadBalancer
 
-  # Trigger comment for build
-  # Trigger another one
-
-  # Trigger again
