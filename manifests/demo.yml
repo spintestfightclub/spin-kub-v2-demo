@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: primary
-        image: 201599078153.dkr.ecr.us-east-1.amazonaws.com/mason-test-ecr:latest
+        image: 201599078153.dkr.ecr.us-east-1.amazonaws.com/mason-test-ecr
         ports:
         - containerPort: 8000
         readinessProbe:
