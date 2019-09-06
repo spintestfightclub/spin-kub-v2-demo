@@ -59,8 +59,36 @@ spec:
     targetPort: 8000
   type: LoadBalancer
 
-
-
+---
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: spinnaker-demo
+  namespace: demo
+  labels:
+    applicationName: spinnaker-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      applicationName: spinnaker-demo
+  template:
+    metadata:
+      labels:
+        applicationName: spinnaker-demo
+    spec:
+      containers:
+        - name: primary
+          image: 201599078153.dkr.ecr.us-east-1.amazonaws.com/mason-test-ecr
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+          envFrom:
+          - configMapRef:
+              name: spinnaker-demo-config
 
 # Another one
 # Another one
