@@ -1,0 +1,32 @@
+apiVersion: apps/v1beta2
+kind: ReplicaSet
+metadata:
+  name: spinnaker-staging
+  namespace: spinkubstaging
+  labels:
+    applicationName: spinnaker-staging
+  annotations:
+    strategy.spinnaker.io/max-version-history: '2'
+    traffic.spinnaker.io/load-balancers: '["service spinnaker-staging"]'
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      applicationName: spinnaker-staging
+  template:
+    metadata:
+      labels:
+        applicationName: spinnaker-staging
+    spec:
+      containers:
+        - name: spinkub-demo-container
+          image: 201599078153.dkr.ecr.us-east-1.amazonaws.com/mason-test-ecr
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8000
+          env:
+          - name: NEW_FEATURE
+            value: 'true'
