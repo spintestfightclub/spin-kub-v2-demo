@@ -11,7 +11,7 @@ metadata:
     app.kubernetes.io/managed-by: spinnaker
     app.kubernetes.io/name: helloworld
   name: spinnaker-demoapp
-  namespace: default
+  namespace: spinnaker-demoapp
 spec:
   ports:
     - port: 80
@@ -19,3 +19,4 @@ spec:
       targetPort: 8000
   selector:
     app: spinnaker-demoapp
+  type: LoadBalancer
