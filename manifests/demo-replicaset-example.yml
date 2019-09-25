@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: spinkub-demo-container
-          image: 201599078153.dkr.ecr.us-east-1.amazonaws.com/mason-test-ecr
+          image: 474168465621.dkr.ecr.us-west-2.amazonaws.com/encore
           ports:
             - containerPort: 8000
           readinessProbe:
