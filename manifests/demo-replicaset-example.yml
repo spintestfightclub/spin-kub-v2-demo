@@ -1,25 +1,25 @@
 apiVersion: apps/v1beta2
 kind: ReplicaSet
 metadata:
-  name: spinnaker-staging
-  namespace: spinkubstaging
+  name: spinnaker-demoapp
+  namespace: spinnaker-demoapp
   labels:
-    applicationName: spinnaker-staging
+    applicationName: spinnaker-demoapp
   annotations:
     strategy.spinnaker.io/max-version-history: '2'
-    traffic.spinnaker.io/load-balancers: '["service spinnaker-staging"]'
+    traffic.spinnaker.io/load-balancers: '["service spinnaker-demoapp"]'
 spec:
   replicas: 3
   selector:
     matchLabels:
-      applicationName: spinnaker-staging
+      applicationName: spinnaker-demoapp
   template:
     metadata:
       labels:
-        applicationName: spinnaker-staging
+        applicationName: spinnaker-demoapp
     spec:
       containers:
-        - name: spinkub-demo-container
+        - name: spinkub-demoapp-container
           image: 474168465621.dkr.ecr.us-west-2.amazonaws.com/encore
           ports:
             - containerPort: 8000
