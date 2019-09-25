@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    artifact.spinnaker.io/location: default
+    artifact.spinnaker.io/name: spinnaker-demoapp
+    artifact.spinnaker.io/type: kubernetes/service
+    moniker.spinnaker.io/application: helloworld
+    moniker.spinnaker.io/cluster: service spinnaker-demoapp
+  labels:
+    app.kubernetes.io/managed-by: spinnaker
+    app.kubernetes.io/name: helloworld
+  name: spinnaker-demoapp
+  namespace: default
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: spinnaker-demoapp
